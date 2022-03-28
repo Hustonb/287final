@@ -39,7 +39,7 @@ for ovr in overallrows:
     #now need to write a regex to get rid of leading and trailing stuff around the two #'s
     regex=r"[0-9]*\w[0-9]"
     ovr=re.search(regex,ovr).group(0)
-    print(ovr)
+    # print(ovr)
     #we'll have to either alter the regex, as some of the digits came in as n's. alternatively,
     # we could go through and manually change them, there aren't that many.
 
@@ -52,8 +52,19 @@ for height in heightrows:
    heightrows[i]=text
    i=i+1
 
-# for height in heightrows:
-#     print(height)
+for height in heightrows:
+    height=str(height)
+    height=height.replace("b'", "")
+    height = height.replace("b\"", "")
+    height = height.replace("\\", "")
+    height = height.replace("\"'", "\"")
+    height = height.replace("=ntd&gt;'", "")
+    height = height.replace("&lt;/td&gt;'", "")
+    height = height.replace("=n", "")
+    # #now need to write a regex to get rid of leading and trailing stuff around the #'s
+    # regex=r"[0-9]*\w[0-9]*\w"
+    # height=re.search(regex,height).group(0)
+    print(height)
 
 #now work on getting name into a resultobject
 namerows=soup.find_all(lambda tag: tag.name == 'td' and tag.get('class') == ['3D"data-name'])
