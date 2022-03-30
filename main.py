@@ -64,18 +64,21 @@ for height in heightrows:
     # #now need to write a regex to get rid of leading and trailing stuff around the #'s
     # regex=r"[0-9]*\w[0-9]*\w"
     # height=re.search(regex,height).group(0)
-    print(height)
+    # print(height)
 
 #now work on getting name into a resultobject
 namerows=soup.find_all(lambda tag: tag.name == 'td' and tag.get('class') == ['3D"data-name'])
 #need to find a way to get the 'a' tag from the td.
 
 for name in namerows:
-    # name=name.find('a')
-    # name=name.find('span')
-    # name=name.contents[0]
-    name=name.renderContents()
-    # print(name)
+    name=str(name)
+    #write a regex here that gets what's after span and before a
+    # regex= r"(?i)span.*(?i)<\/a>"
+    regex= r"(span).*(<\/a>)"
+    name= re.search(regex, name).group(0)
+    # name = name.find('a')
+    # name=name.find('a').contents[1]
+    print(name)
 
 # links = soup.find_all('a')
 # for link in links:
