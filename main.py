@@ -71,13 +71,12 @@ namerows=soup.find_all(lambda tag: tag.name == 'td' and tag.get('class') == ['3D
 #need to find a way to get the 'a' tag from the td.
 
 for name in namerows:
-    name=str(name)
+    # name=str(name)
     #write a regex here that gets what's after span and before a
     # regex= r"(?i)span.*(?i)<\/a>"
-    regex= r"(span).*(<\/a>)"
-    name= re.search(regex, name).group(0)
-    # name = name.find('a')
-    # name=name.find('a').contents[1]
+    # regex= r"/^[a-z,.'-]+$/i"
+    # name= re.search(regex, name).group(0)
+    name=name.find('a').contents[1]
     print(name)
 
 # links = soup.find_all('a')
